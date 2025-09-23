@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - Health Buddy</title>
+    <link rel="stylesheet" href="../static/css/chat_dashboard.css">
+</head>
+<body>
+    <!-- Background gradient overlay -->
+    <div class="profile-bg-overlay"></div>
+
+    <!-- Profile Page Container -->
+    <div class="profile-page-container">
+        <!-- Header -->
+        <div class="profile-header">
+            <div class="back-btn-container">
+                <button id="backBtn" class="back-btn">← Back to Chat</button>
+            </div>
+            <h1>👤 User Profile</h1>
+        </div>
+
+        <!-- Profile Content -->
+        <div class="profile-content">
+            <!-- User Info Section -->
+            <div class="user-info-section">
+                <div class="profile-avatar-large">👤</div>
+                <h2>Health Buddy User</h2>
+                <p>Your personal health assistant</p>
+                <div class="user-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalChats">0</span>
+                        <span class="stat-label">Total Chats</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalMessages">0</span>
+                        <span class="stat-label">Messages</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="daysActive">0</span>
+                        <span class="stat-label">Days Active</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat History Section -->
+            <div class="chat-history-section">
+                <div class="section-header">
+                    <h3>💬 Chat History</h3>
+                    <button id="clearHistoryBtn" class="clear-btn">Clear All History</button>
+                </div>
+                
+                <div class="history-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="today">Today</button>
+                    <button class="filter-btn" data-filter="week">This Week</button>
+                    <button class="filter-btn" data-filter="month">This Month</button>
+                </div>
+
+                <div id="chatHistoryList" class="history-list">
+                    <div class="no-history">
+                        <p>No chat history yet. Start chatting to see your conversations here!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Profile page specific JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProfileData();
+            setupEventListeners();
+        });
+
+        function loadProfileData() {
+            const chatHistory = JSON.parse(localStorage.getItem('healthBuddyChatHistory') || '[]');
+            
+            // Update stats
+            document.getElementById('totalChats').textContent = chatHistory.length;
+            document.getElementById('totalMessages').textContent = chatHistory.length * 2; // User + Bot messages
+            
+            // Calculate days active
+            const uniqueDays = new Set(chatHistory.map(item => 
+                new Date(item.timestamp).toDateString()
+            )).size;
+            document.getElementById('daysActive').textContent = uniqueDays;
+            
+            // Load chat history
+            loadChatHistory('all');
+        }
+
+        function loadChatHistory(filter) {
+            const historyList = document.getElementById('chatHistoryList');
+            const chatHistory = JSON.parse(localStorage.getItem('healthBuddyChatHistory') || '[]');
+            
+            if (chatHistory.length === 0) {
+                historyList.innerHTML = '<div class="no-history"><p>No chat history yet. Start chatting to see your conversations here!</p></div>';
+                return;
+            }
+            
+            let filteredHistory = chatHistory;
+            const now = new Date();
+            
+            switch(filter) {
+                case 'today':
+                    filteredHistory = chatHistory.filter(item => 
+                        new Date(item.timestamp).toDateString() === now.toDateString()
+                    );
+                    break;
+                case 'week':
+                    const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+                    filteredHistory = chatHistory.filter(item => 
+                        new Date(item.timestamp) >= weekAgo
+                    );
+                    break;
+                case 'month':
+                    const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+                    filteredHistory = chatHistory.filter(item => 
+                        new Date(item.timestamp) >= monthAgo
+                    );
+                    break;
+            }
+            
+            if (filteredHistory.length === 0) {
+                historyList.innerHTML = '<div class="no-history"><p>No conversations found for this period.</p></div>';
+                return;
+            }
+            
+            historyList.innerHTML = '';
+            filteredHistory.reverse().forEach((item, index) => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item collapsed';
+                historyItem.innerHTML = `
+                    <div class="history-header" onclick="toggleHistory(${index})">
+                        <div class="history-title">
+                            <span class="history-icon">💬</span>
+                            <span class="history-preview">${item.message.length > 50 ? item.message.substring(0, 50) + '...' : item.message}</span>
+                        </div>
+                        <div class="history-timestamp">${new Date(item.timestamp).toLocaleString()}</div>
+                        <div class="expand-icon">▼</div>
+                    </div>
+                    <div class="history-content" style="display: none;">
+                        <div class="history-message">
+                            <strong>You:</strong> ${item.message}
+                        </div>
+                        <div class="history-reply">
+                            <strong>Health Buddy:</strong> ${item.reply}
+                        </div>
+                    </div>
+                `;
+                historyList.appendChild(historyItem);
+            });
+        }
+
+        function toggleHistory(index) {
+            const historyItem = document.querySelectorAll('.history-item')[index];
+            const content = historyItem.querySelector('.history-content');
+            const expandIcon = historyItem.querySelector('.expand-icon');
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                expandIcon.textContent = '▲';
+                historyItem.classList.remove('collapsed');
+                historyItem.classList.add('expanded');
+            } else {
+                content.style.display = 'none';
+                expandIcon.textContent = '▼';
+                historyItem.classList.remove('expanded');
+                historyItem.classList.add('collapsed');
+            }
+        }
+
+        function setupEventListeners() {
+            // Back button
+            document.getElementById('backBtn').addEventListener('click', () => {
+                window.location.href = '/chat-ui';
+            });
+
+            // Clear history button
+            document.getElementById('clearHistoryBtn').addEventListener('click', () => {
+                if (confirm('Are you sure you want to clear all chat history? This action cannot be undone.')) {
+                    localStorage.removeItem('healthBuddyChatHistory');
+                    loadProfileData();
+                }
+            });
+
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    loadChatHistory(btn.dataset.filter);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

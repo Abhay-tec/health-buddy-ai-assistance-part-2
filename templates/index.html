@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Buddy</title>
+    <link rel="stylesheet" href="../static/css/main.css">
+      <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+   <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+   <!--navbar logo font-->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <!--Font Awesome-->
+    <!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+ <!-- Google Font (Montserrat) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+<!--Link js-->
+
+
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+    <div class="container">
+     <!-- Logo as text only -->
+    <a class="navbar-brand logo-text" href="#">HealthBuddy</a>
+
+    <!-- Toggler -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+       <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
+      <ul class="navbar-nav ">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+        <!--buttons-->
+    <div class="d-flex">
+  <a href="#" class="nav-btn btn-signin me-2">Sign In</a>
+  <a href="#" class="nav-btn btn-getstarted">Get Started</a>
+</div>
+      </div>
+    </div>
+  </nav>
+ <section class="hero-section" id="home">
+  <div class="container">
+    <div class="row justify-content-end align-items-center">
+
+        <div class="col-12">       <!--md-8 means paragraph changed-->
+          <h1>Your Personal <span class="text-primary">AI<br>Health</span><br>Advisor</h1>
+           <div class="col-12 d-flex justify-content-end">
+        <div class="text-end" style="max-width: 600px;">
+          <p class="mt-3">
+            Get instant, personalized health guidance from our advanced AI chatbot.  
+            Available 24/7 to answer your health questions and provide reliable medical information.
+          </p>
+        
+          <div class="mt-4">
+            <a href="/chat-ui" class="custom-btn"><i class="fa-regular fa-comment fa-bounce"></i>Start Chat Now</a>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!--Features page-->
+  <!-- Features Section -->
+<section class="py-5 bg-light" style="background: linear-gradient(135deg, #438d9e, #eaf3ff);" id="features">
+  <div class="container text-center">
+
+    <!-- Heading & Subtext -->
+    <h2 class="fw-bold mb-3">Powerful Features for Your Health</h2>
+    <p class="text-muted mb-5">
+      Our AI health advisor combines cutting-edge technology with <br>medical expertise 
+      to provide you with accurate, personalized health guidance.
+    </p>
+
+    <!-- Feature Cards -->
+     <div class="container py-2">
+    
+    <div class="row g-8 ">
+      
+      <div class="col-md-4">
+        <div class="feature-card text-center">
+          <div class="feature-icon">
+          <i class="fa-solid fa-comments fa-lg  text-primary"></i>
+        </div>
+         <h5 class="feature-title">24/7 Health Chat</h5>
+          <p class="feature-text">Get instant answers to your health questions any time of day. Our AI is always available to provide reliable medical information and guidance.</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="feature-card text-center">
+          <div class="feature-icon">⚕</div>
+          <h5 class="feature-title">Personalized Advice</h5>
+          <p class="feature-text">Receive tailored health recommendations based on your symptoms, medical history, and personal health profile for more accurate guidance.</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="feature-card text-center">
+          <div class="feature-icon">🩺</div>
+          <h5 class="feature-title">Symptom Checker</h5>
+          <p class="feature-text">Describe your symptoms and get insights into possible conditions, along with recommendations for next steps and when to seek professional care.</p>
+        </div>
+</div>
+      
+      <div class="col-md-4">
+        <div class="feature-card text-center">
+          <div class="feature-icon"><i class="fa-regular fa-calendar-days"></i></div>
+          <h5 class="feature-title">Health Tracking</h5>
+          <p class="feature-text">Keep track of your symptoms, medications, and health progress over time with our intelligent health monitoring system.</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="feature-card text-center">
+          <div class="feature-icon">🏥</div>
+          <h5 class="feature-title">WHO Verified</h5>
+          <p class="feature-text">All responses are cross-checked with the World Health Organization (WHO) database to ensure accurate, reliable, and trustworthy health information..</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="feature-card text-center">
+          <div class="feature-icon"><i class="fa-solid fa-lock" style="color: #d7ab0f;"></i></div>
+          <h5 class="feature-title">Privacy Protected</h5>
+          <p class="feature-text">Your health information is completely secure and private. We follow strict HIPAA compliance standards to protect your sensitive data.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Left Side - Content -->
+                <div class="col-lg-6">
+                    <div class="about-content">
+                        <div class="section-badge">
+                            <i class="fas fa-robot"></i>
+                            <span>About HealthBot</span>
+                        </div>
+                        <h2 class="about-title">
+                            Your Intelligent <span class="highlight">Health Companion</span>
+                        </h2>
+                        <p class="about-description">
+                            HealthBot is an advanced AI-powered health assistant designed to provide instant, 
+                            reliable medical guidance 24/7. Our intelligent system combines cutting-edge 
+                            artificial intelligence with comprehensive medical knowledge to help you make 
+                            informed health decisions.
+                        </p>
+                        
+                        <div class="about-features">
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>AI-Powered Intelligence</h4>
+                                    <p>Advanced machine learning algorithms trained on vast medical databases</p>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>Privacy Protected</h4>
+                                    <p>Your health data is encrypted and never shared with third parties</p>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h4>24/7 Availability</h4>
+                                    <p>Get instant health guidance whenever you need it, day or night</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">24/7</div>
+                                <div class="stat-label">Always Available</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side - Visual -->
+                <div class="col-lg-6">
+                    <div class="about-visual">
+                        <div class="bot-container">
+                            <div class="health-bot">
+                                <div class="bot-head">
+                                    <div class="bot-eyes">
+                                        <div class="eye left-eye"></div>
+                                        <div class="eye right-eye"></div>
+                                    </div>
+                                    <div class="bot-antenna">
+                                        <div class="antenna-dot"></div>
+                                    </div>
+                                </div>
+                                <div class="bot-body">
+                                    <div class="bot-screen">
+                                        <div class="screen-content">
+                                            <div class="pulse-line"></div>
+                                            <div class="pulse-line delay-1"></div>
+                                            <div class="pulse-line delay-2"></div>
+                                        </div>
+                                    </div>
+                                    <div class="bot-arms">
+                                        <div class="arm left-arm"></div>
+                                        <div class="arm right-arm"></div>
+                                    </div>
+                                </div>
+                                <div class="bot-base">
+                                    <div class="base-light"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Floating Elements -->
+                            <div class="floating-data">
+                                <div class="data-point point-1">
+                                    <i class="fas fa-heartbeat"></i>
+                                </div>
+                                <div class="data-point point-2">
+                                    <i class="fas fa-thermometer-half"></i>
+                                </div>
+                                <div class="data-point point-3">
+                                    <i class="fas fa-pills"></i>
+                                </div>
+                                <div class="data-point point-4">
+                                    <i class="fas fa-stethoscope"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+        <!-- Premium Contact Form -->
+        <section class="premium-contact-section" id="contact">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-10">
+                <div class="premium-contact-card">
+                  
+                  <!-- Header Section -->
+                  <div class="contact-header text-center mb-5">
+                    <div class="support-icon">
+                      <i class="fas fa-headset"></i>
+                    </div>
+                    <h2 class="contact-title">Need Support?</h2>
+                    <p class="contact-subtitle">Contact us if you need further assistance.</p>
+                    <div class="title-underline"></div>
+                  </div>
+
+                  <div class="row g-4">
+                    <!-- Left Side - Visual -->
+                    <div class="col-lg-5">
+                      <div class="contact-visual">
+                        <div class="floating-elements">
+                          <div class="floating-icon icon-1">
+                            <i class="fas fa-user-md"></i>
+                          </div>
+                          <div class="floating-icon icon-2">
+                            <i class="fas fa-heartbeat"></i>
+                          </div>
+                          <div class="floating-icon icon-3">
+                            <i class="fas fa-stethoscope"></i>
+                          </div>
+                          <div class="floating-icon icon-4">
+                            <i class="fas fa-pills"></i>
+                          </div>
+                        </div>
+                        <div class="main-visual">
+                          <img src="../static/images/doctor.png" class="doctor-image" alt="Healthcare Professional">
+                          <div class="pulse-ring"></div>
+                          <div class="pulse-ring delay-1"></div>
+                          <div class="pulse-ring delay-2"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Right Side - Form -->
+                    <div class="col-lg-7">
+                      <div class="premium-form-container">
+                        <form class="premium-form">
+                          <div class="row g-3">
+                            <div class="col-md-6">
+                              <div class="form-floating premium-input-group">
+                                <input type="text" class="form-control premium-input" id="firstName" placeholder="First Name" required>
+                                <label for="firstName" class="premium-label">
+                                  <i class="fas fa-user"></i> First Name
+                                </label>
+                                <div class="input-glow"></div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-floating premium-input-group">
+                                <input type="text" class="form-control premium-input" id="lastName" placeholder="Last Name" required>
+                                <label for="lastName" class="premium-label">
+                                  <i class="fas fa-user"></i> Last Name
+                                </label>
+                                <div class="input-glow"></div>
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <div class="form-floating premium-input-group">
+                                <input type="email" class="form-control premium-input" id="email" placeholder="Email" required>
+                                <label for="email" class="premium-label">
+                                  <i class="fas fa-envelope"></i> Email Address
+                                </label>
+                                <div class="input-glow"></div>
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <div class="form-floating premium-input-group">
+                                <textarea class="form-control premium-input" id="message" placeholder="Your Message" style="height: 120px" required></textarea>
+                                <label for="message" class="premium-label">
+                                  <i class="fas fa-comment-dots"></i> Your Message
+                                </label>
+                                <div class="input-glow"></div>
+                              </div>
+                            </div>
+                            <div class="col-12 text-center">
+                              <button type="submit" class="premium-submit-btn">
+                                <span class="btn-content">
+                                  <i class="fas fa-paper-plane"></i>
+                                  <span class="btn-text">Send Message</span>
+                                </span>
+                                <div class="btn-ripple"></div>
+                                <div class="btn-shine"></div>
+                              </button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+  
+</body>
+</html>

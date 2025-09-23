@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <title>Health Buddy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/chat_dashboard.css">
+    <script src="../static/js/quick_prompts.js" defer></script>
+</head>
+<body>
+    <!-- Background Video -->
+    <video autoplay muted loop playsinline id="bg-video">
+       <source src="/static/video/bg-clip.mp4" type="video/mp4">
+
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar-left" id="sidebar-left">
+            <div class="sidebar-header">
+                <span class="sidebar-title">Health Buddy</span>
+                <button class="minimize-btn" id="minimizeBtn">−</button>
+            </div>
+            <div class="sidebar-content">
+                <button class="feature-btn" id="userProfileBtn">User Profile</button>
+                <button class="feature-btn" id="dashboardBtn">Dashboard</button>
+                <button class="feature-btn" id="setGoalBtn">Set Goal</button>
+                <button class="feature-btn" id="checkSymptomsBtn">Check Symptoms</button>
+                <button class="feature-btn" id="healthTipsBtn">Health Tips</button>
+                <button class="feature-btn" id="emergencyFirstAidBtn">Emergency First Aid</button>
+                <button class="feature-btn" id="sosBtn">SOS</button>
+            </div>
+        </div>
+
+        <!-- Premium Sign Up Button -->
+        <div class="top-right">
+            <button id="signupBtn">Sign Up</button>
+        </div>
+
+        <!-- Main Chat -->
+        <div id="chat-box">
+            <div id="messages"></div>
+
+            <!-- Welcome Section -->
+            <div id="welcome-section">
+                <h1>Hi there, Friend! 👋</h1>
+                <p>I'm your Health Buddy. How can I help you today?</p>
+            </div>
+
+            <!-- Quick Prompts -->
+            <div id="quick-prompts">
+                <button class="prompt-btn" data-prompt="What are the symptoms of common cold?">Common Cold</button>
+                <button class="prompt-btn" data-prompt="What should I do if I have a headache?">Headache</button>
+                <button class="prompt-btn" data-prompt="Give me tips for staying healthy">Health Tips</button>
+                <button class="prompt-btn" data-prompt="What to eat to boost immunity?">Immunity Boost</button>
+            </div>
+
+<div id="input-area" class="glass-input-area">
+  <input type="text" id="userInput" placeholder="Type your message...">
+  <button onclick="sendMessage()">Send</button>
+</div>
+
+<!-- Footer -->
+<div id="disclaimer-footer">
+  <p> Disclaimer: Health Buddy is not a doctor; consult a qualified doctor for real medical issues</p>
+</div>
+
+
+    <!-- SOS Overlay (Initially Hidden) -->
+<div id="sos-overlay" class="hidden">
+    <div class="sos-popup">
+        <h2>🚨 Emergency SOS</h2>
+        <div class="btn-row">
+            <button id="sos-action-btn" class="sos-btn sos-call">
+                🚑 Call Ambulance
+            </button>
+            <button id="close-sos-btn" class="sos-btn sos-cancel">
+                ✖ Cancel
+            </button>
+        </div>
+    </div>
+</div>
+
+ <!-- code by abhay -->
+  <div id="typing-indicator" class="hidden">
+  <span></span><span></span><span></span>
+</div>
+ <!-- code by abhay -->
+
