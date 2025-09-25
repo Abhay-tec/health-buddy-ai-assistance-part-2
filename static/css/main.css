@@ -1236,3 +1236,85 @@
         font-size: 1rem;
       }
     }
+/* === Professional Opinions Section === */
+.professional-section {
+  background: #f8f9fa;
+  padding: 60px 0;
+}
+
+.professional-section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.professional-section p {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Opinion Card */
+.opinion-card {
+  max-width: 500px;
+  margin: auto;
+  background: #fff;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.opinion-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* Doctor Signature */
+.signature-img {
+  max-width: 160px;
+  margin-top: 15px;
+  opacity: 0.9;
+}
+
+/* Small text under doctor name */
+.opinion-card .text-muted.small {
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+/* Navbar */
+.navbar-custom {
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  min-height: 70px;         /* ✅ Fixed: use min-height instead of height */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+/* Collapse menu (only for mobile) */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: white;
+    position: absolute;
+    top: 70px;   /* navbar height */
+    left: 0;
+    width: 100%;
+    padding: 10px 0;
+    z-index: 1040;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  .navbar-collapse .nav-link {
+    display: block;
+    padding: 10px 20px;
+    color: black;
+  }
+}
+
+/* Hero section should not overlap */
+.hero-section {
+  padding-top: 120px;  /* ✅ keeps space for fixed navbar */
+}

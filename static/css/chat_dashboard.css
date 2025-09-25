@@ -1600,3 +1600,307 @@ body {
 }
 
 }
+/* ===== Mobile Responsive Fixes ===== */
+
+/* For tablets and small laptops */
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar-left {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .sidebar-left .feature-btn {
+    flex: 1 1 45%;
+    font-size: 13px;
+    padding: 10px;
+    text-align: center;
+  }
+
+  #chat-box {
+    padding: 10px;
+  }
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar-left {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .sidebar-left .feature-btn {
+    flex: 1 1 auto;
+    font-size: 12px;
+    padding: 8px 10px;
+    white-space: nowrap;
+  }
+
+  #welcome-section h1 {
+    font-size: 1.4rem;
+  }
+
+  #welcome-section p {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+
+  #messages {
+    padding: 8px;
+  }
+
+  .msg {
+    max-width: 85%;
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+
+  #quick-prompts {
+    gap: 6px;
+  }
+
+  .prompt-btn {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  #input-area.glass-input-area {
+    width: 95%;
+    margin: 6px auto;
+    padding: 6px 8px;
+    border-radius: 18px;
+  }
+
+  #input-area input {
+    font-size: 13px;
+    padding: 6px 8px;
+  }
+
+  #input-area button {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  #disclaimer-footer {
+    font-size: 9px;
+    padding: 0 10px;
+    bottom: 5px;
+    position: fixed;
+    background: rgba(255,255,255,0.5);
+  }
+}
+
+/* Extra small screens (phones < 480px) */
+@media (max-width: 480px) {
+  .sidebar-left {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sidebar-left .feature-btn {
+    font-size: 11px;
+    padding: 6px;
+    text-align: center;
+  }
+
+  #welcome-section h1 {
+    font-size: 1.2rem;
+  }
+
+  #welcome-section p {
+    font-size: 0.8rem;
+  }
+
+  .msg {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+
+  .prompt-btn {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  #input-area.glass-input-area {
+    min-height: 35px;
+    padding: 4px 6px;
+  }
+
+  #input-area input {
+    font-size: 12px;
+  }
+
+  #input-area button {
+    font-size: 10px;
+    min-width: 40px;
+  }
+
+  #disclaimer-footer p {
+    font-size: 8px;
+  }
+}
+/* ===== Mobile Responsive Fixes ===== */
+
+/* For tablets and small laptops */
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar-left {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .sidebar-left .feature-btn {
+    flex: 1 1 45%;
+    font-size: 13px;
+    padding: 10px;
+    text-align: center;
+  }
+
+  #chat-box {
+    padding: 10px;
+  }
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar-left {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .sidebar-left .feature-btn {
+    flex: 1 1 auto;
+    font-size: 12px;
+    padding: 8px 10px;
+    white-space: nowrap;
+  }
+
+  #welcome-section h1 {
+    font-size: 1.4rem;
+  }
+
+  #welcome-section p {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+
+  #messages {
+    padding: 8px;
+  }
+
+  .msg {
+    max-width: 85%;
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+
+  #quick-prompts {
+    gap: 6px;
+  }
+
+  .prompt-btn {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  #input-area.glass-input-area {
+    width: 95%;
+    margin: 6px auto;
+    padding: 6px 8px;
+    border-radius: 18px;
+  }
+
+  #input-area input {
+    font-size: 13px;
+    padding: 6px 8px;
+  }
+
+  #input-area button {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  #disclaimer-footer {
+    font-size: 9px;
+    padding: 0 10px;
+    bottom: 5px;
+    position: fixed;
+    background: rgba(255,255,255,0.5);
+  }
+}
+
+/* Extra small screens (phones < 480px) */
+@media (max-width: 480px) {
+  .sidebar-left {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sidebar-left .feature-btn {
+    font-size: 11px;
+    padding: 6px;
+    text-align: center;
+  }
+
+  #welcome-section h1 {
+    font-size: 1.2rem;
+  }
+
+  #welcome-section p {
+    font-size: 0.8rem;
+  }
+
+  .msg {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+
+  .prompt-btn {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  #input-area.glass-input-area {
+    min-height: 35px;
+    padding: 4px 6px;
+  }
+
+  #input-area input {
+    font-size: 12px;
+  }
+
+  #input-area button {
+    font-size: 10px;
+    min-width: 40px;
+  }
+
+  #disclaimer-footer p {
+    font-size: 8px;
+  }
+}

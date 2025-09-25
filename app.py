@@ -4,6 +4,7 @@ from groq import Groq
 from datetime import datetime
 import os
 from dotenv import load_dotenv
+import requests  # added for WHO API calls
 
 # Load environment variables from .env
 load_dotenv()
@@ -18,10 +19,10 @@ if not GROQ_API_KEY:
 client = Groq(api_key=GROQ_API_KEY)
 
 
-
 @app.route("/")
 def home():
-      return render_template("index.html")
+    return render_template("index.html")
+
 
 @app.route("/chat", methods=["POST"])
 def chat():
@@ -30,33 +31,33 @@ def chat():
     
     try:
         response = client.chat.completions.create(
-    model="llama-3.1-8b-instant",
-    messages=[
-        {
-            "role": "system",
-            "content": (
-                "You are *Health Buddy*, a friendly AI health assistant. "
-                "ALWAYS respond in English by default. Never use Hindi unless the user specifically asks to speak in Hindi. "
-                "Only switch to Hindi if the user requests it with phrases like 'hindi mein baat karo', 'hindi mein reply do', 'speak in Hindi', or similar commands. "
-                "When responding in Hindi, use simple, basic Hindi that is easy to understand. Use common words like: "
-                "namaste, dhanyawad, accha, theek hai, bilkul, zaroor, kya, kaise, kahan, kab, kyun, etc. "
-                "For Hindi responses, use proper Hindi grammar and pronunciation. Write Hindi words correctly: "
-                "Use 'aap' instead of 'ap', 'kaise' instead of 'kese', 'kahan' instead of 'kahan', 'kyun' instead of 'kyu'. "
-                "Keep Hindi responses short, clear, and simple. Avoid complex Hindi words. "
-                "Keep your responses short, clear, and easy to understand. "
-                "Break health advice into simple steps. "
-                "Be very friendly, encouraging, and supportive. "
-                "Ask simple questions to understand their health needs. "
-                "Use simple words and avoid medical jargon. "
-                "Always be helpful and caring like a good friend. "
-                "IMPORTANT: Always provide accurate, evidence-based health information. "
-                "When discussing vaccines, diseases, or treatments, refer to WHO guidelines. "
-                "Remember: You are Health Buddy - their friendly health companion. Default language is English only."
-            )
-        },
-        *chat_history  # Send full conversation for context
-    ]
-)
+            model="llama-3.1-8b-instant",
+            messages=[
+                {
+                    "role": "system",
+                    "content": (
+                        "You are Health Buddy, a friendly AI health assistant. "
+    "Default language: English. "
+    "Support Hindi if user asks with phrases like 'hindi mein baat karo', 'reply in Hindi'. "
+    "Support other Indian regional languages if user clearly requests: "
+    "- Marathi ('marathi mein baat karo') "
+    "- Tamil ('tamil la pesa') "
+    "- Telugu ('telugu lo matladu') "
+    "- Bengali ('bangla te katha bolo') "
+    "- Gujarati ('gujarati ma vaat karo') "
+    "- Punjabi ('punjabi vich gall karo') "
+    "Always keep responses simple, clear, short, and easy to understand. "
+    "For each regional language, use basic vocabulary, easy grammar, and friendly tone. "
+    "Never auto-switch language unless user specifically asks. "
+    "Always provide accurate, evidence-based health information. "
+    "When discussing vaccines, diseases, or treatments, refer to WHO guidelines. "
+    "Remember: You are Health Buddy - a caring health companion."
+
+                    )
+                },
+                *chat_history
+            ]
+        )
 
         bot_reply = response.choices[0].message.content
         
@@ -65,9 +66,11 @@ def chat():
 
     return jsonify({"reply": bot_reply})
 
+
 @app.route("/chat-ui")
 def chat_ui():
     return render_template("chat_dashboard.html")
+
 
 @app.route("/profile")
 def profile():
@@ -84,30 +87,29 @@ def whatsapp_webhook():
 
     if incoming_text:
         try:
-           
             response = client.chat.completions.create(
                 model="llama-3.1-8b-instant",
                 messages=[
                     {
                         "role": "system",
                         "content": (
-                            "You are *Health Buddy*, a friendly AI health assistant. "
-                            "ALWAYS respond in English by default. Never use Hindi unless the user specifically asks to speak in Hindi. "
-                            "Only switch to Hindi if the user requests it with phrases like 'hindi mein baat karo', 'hindi mein reply do', 'speak in Hindi', or similar commands. "
-                            "When responding in Hindi, use simple, basic Hindi that is easy to understand. Use common words like: "
-                            "namaste, dhanyawad, accha, theek hai, bilkul, zaroor, kya, kaise, kahan, kab, kyun, etc. "
-                            "For Hindi responses, use proper Hindi grammar and pronunciation. Write Hindi words correctly: "
-                            "Use 'aap' instead of 'ap', 'kaise' instead of 'kese', 'kahan' instead of 'kahan', 'kyun' instead of 'kyu'. "
-                            "Keep Hindi responses short, clear, and simple. Avoid complex Hindi words. "
-                            "Keep your responses short, clear, and easy to understand. "
-                            "Break health advice into simple steps. "
-                            "Be very friendly, encouraging, and supportive. "
-                            "Ask simple questions to understand their health needs. "
-                            "Use simple words and avoid medical jargon. "
-                            "Always be helpful and caring like a good friend. "
-                            "IMPORTANT: Always provide accurate, evidence-based health information. "
-                            "When discussing vaccines, diseases, or treatments, refer to WHO guidelines. "
-                            "Remember: You are Health Buddy - their friendly health companion. Default language is English only."
+                            "You are Health Buddy, a friendly AI health assistant. "
+    "Default language: English. "
+    "Support Hindi if user asks with phrases like 'hindi mein baat karo', 'reply in Hindi'. "
+    "Support other Indian regional languages if user clearly requests: "
+    "- Marathi ('marathi mein baat karo') "
+    "- Tamil ('tamil la pesa') "
+    "- Telugu ('telugu lo matladu') "
+    "- Bengali ('bangla te katha bolo') "
+    "- Gujarati ('gujarati ma vaat karo') "
+    "- Punjabi ('punjabi vich gall karo') "
+    "Always keep responses simple, clear, short, and easy to understand. "
+    "For each regional language, use basic vocabulary, easy grammar, and friendly tone. "
+    "Never auto-switch language unless user specifically asks. "
+    "Always provide accurate, evidence-based health information. "
+    "When discussing vaccines, diseases, or treatments, refer to WHO guidelines. "
+    "Remember: You are Health Buddy - a caring health companion."
+
                         ),
                     },
                     {"role": "user", "content": incoming_text},
@@ -118,10 +120,33 @@ def whatsapp_webhook():
         except Exception as e:
             bot_reply = f"Error: {str(e)}"
 
-   # Build TwiML response for WhatsApp/SMS
+    # Build TwiML response for WhatsApp/SMS
     twiml = MessagingResponse()
     twiml.message(bot_reply)
     return str(twiml), 200, {"Content-Type": "application/xml"}
+
+
+
+@app.route("/who-data")
+def who_data():
+    try:
+        url = "https://ghoapi.azureedge.net/api/WHOSIS_000001"
+        resp = requests.get(url, timeout=10)
+        resp.raise_for_status()
+        data = resp.json()
+
+        # Optional: filter by country code if provided as query param
+        country = request.args.get("country", None)
+        if country:
+            filtered = [item for item in data.get("value", []) if item.get("SpatialDim") == country]
+        else:
+            # default: return first 50 records to avoid huge responses
+            filtered = data.get("value", [])[:50]
+
+        return jsonify({"status": "success", "count": len(filtered), "data": filtered})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+# ---------------------------------------
 
 
 if __name__ == "__main__":
