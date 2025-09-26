@@ -1621,3 +1621,86 @@ body {
     margin-left: 180px;
   }
 }
+/* ===== Mobile sidebar / hamburger fixes - append to bottom ===== */
+
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 1001;
+  font-size: 20px;
+  background: linear-gradient(135deg,#667eea,#764ba2);
+  color: #fff;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(102,126,234,0.25);
+}
+
+/* Mobile behaviour */
+@media (max-width: 768px) {
+  .hamburger { display: block; }
+
+  /* hide big sidebar by default on mobile */
+  .sidebar-left {
+    left: -240px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 200px;
+    height: 100%;
+    overflow-y: auto;
+    transition: left 0.28s ease, transform 0.28s ease;
+    transform: translateZ(0);
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 2px 0 18px rgba(0,0,0,0.25);
+  }
+
+  /* when active (after hamburger click) slide in */
+  .sidebar-left.active { left: 0; }
+
+  /* keep minimized state usable on mobile too */
+  .sidebar-left.minimized { width: 60px; left: 0; }
+
+  /* chat should use full width when sidebar hidden */
+  #chat-box {
+    margin-left: 0;
+    width: 100%;
+    min-height: calc(100vh - 64px);
+    padding-bottom: 110px; /* room for sticky input */
+  }
+
+  /* compact sidebar buttons */
+  .sidebar-left .feature-btn {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  /* Make input font-size >=16 to prevent browser zoom on focus (mobile) */
+  #input-area input { font-size: 16px !important; height: 38px; }
+
+  /* Input area width and spacing */
+  #input-area.glass-input-area {
+    width: 96% !important;
+    max-width: none;
+    margin: 0 auto 12px;
+    bottom: 12px;
+    position: sticky;
+  }
+
+  /* welcome section spacing for mobile */
+  #welcome-section { padding: 40px 20px; gap: 14px; }
+
+  /* Quick prompts spacing */
+  #quick-prompts { padding-bottom: 8px; }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+  .sidebar-left { width: 170px; left: -180px; }
+  .sidebar-left.active { left: 0; }
+  .hamburger { top:12px; left:12px; font-size: 18px; padding:6px 8px; }
+  #input-area input { height: 36px; }
+}

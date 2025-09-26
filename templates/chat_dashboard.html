@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <meta charset="UTF-8">
+    <!-- IMPORTANT: Add viewport to prevent mobile zoom on input -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Health Buddy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,9 +15,11 @@
     <!-- Background Video -->
     <video autoplay muted loop playsinline id="bg-video">
        <source src="/static/video/bg-clip.mp4" type="video/mp4">
-
         Your browser does not support the video tag.
     </video>
+
+    <!-- HAMBURGER BUTTON (mobile) -->
+    <button class="hamburger" id="mobileHamburger" onclick="toggleSidebar()" aria-label="Toggle menu">☰</button>
 
     <div class="container">
         <!-- Sidebar -->
@@ -59,35 +62,60 @@
                 <button class="prompt-btn" data-prompt="What to eat to boost immunity?">Immunity Boost</button>
             </div>
 
-<div id="input-area" class="glass-input-area">
-  <input type="text" id="userInput" placeholder="Type your message...">
-  <button onclick="sendMessage()">Send</button>
-</div>
+            <div id="input-area" class="glass-input-area">
+              <input type="text" id="userInput" placeholder="Type your message...">
+              <button onclick="sendMessage()">Send</button>
+            </div>
 
-<!-- Footer -->
-<div id="disclaimer-footer">
-  <p> Disclaimer: Health Buddy is not a doctor; consult a qualified doctor for real medical issues</p>
-</div>
-
-
-    <!-- SOS Overlay (Initially Hidden) -->
-<div id="sos-overlay" class="hidden">
-    <div class="sos-popup">
-        <h2>🚨 Emergency SOS</h2>
-        <div class="btn-row">
-            <button id="sos-action-btn" class="sos-btn sos-call">
-                🚑 Call Ambulance
-            </button>
-            <button id="close-sos-btn" class="sos-btn sos-cancel">
-                ✖ Cancel
-            </button>
+            <!-- Footer -->
+            <div id="disclaimer-footer">
+              <p> Disclaimer: Health Buddy is not a doctor; consult a qualified doctor for real medical issues</p>
+            </div>
         </div>
     </div>
-</div>
 
- <!-- code by abhay -->
-  <div id="typing-indicator" class="hidden">
-  <span></span><span></span><span></span>
-</div>
- <!-- code by abhay -->
+    <!-- SOS Overlay (Initially Hidden) -->
+    <div id="sos-overlay" class="hidden">
+        <div class="sos-popup">
+            <h2>🚨 Emergency SOS</h2>
+            <div class="btn-row">
+                <button id="sos-action-btn" class="sos-btn sos-call">🚑 Call Ambulance</button>
+                <button id="close-sos-btn" class="sos-btn sos-cancel">✖ Cancel</button>
+            </div>
+        </div>
+    </div>
 
+    <!-- Typing indicator -->
+    <div id="typing-indicator" class="hidden">
+      <span></span><span></span><span></span>
+    </div>
+
+    <!-- INLINE JS: sidebar toggle + small mobile behaviour -->
+    <script>
+      function toggleSidebar() {
+        const sb = document.getElementById('sidebar-left');
+        if (!sb) return;
+        sb.classList.toggle('active');
+      }
+
+      // Close sidebar when clicking outside it on mobile (keeps UX clean)
+      document.addEventListener('click', function(e){
+        const sb = document.getElementById('sidebar-left');
+        const hb = document.getElementById('mobileHamburger');
+        if (!sb) return;
+        if (window.innerWidth <= 768) {
+          const clickInside = sb.contains(e.target) || (hb && hb.contains(e.target));
+          if (!clickInside) sb.classList.remove('active');
+        }
+      }, true);
+
+      // keep existing minimize button working (toggle minimized)
+      const minBtn = document.getElementById('minimizeBtn');
+      if (minBtn) {
+        minBtn.addEventListener('click', function(){
+          document.getElementById('sidebar-left').classList.toggle('minimized');
+        });
+      }
+    </script>
+</body>
+</html>
